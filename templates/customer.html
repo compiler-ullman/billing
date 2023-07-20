@@ -1,0 +1,42 @@
+{% include "header.html" %}
+
+<div class="container mt-3">
+    <h1>Customers</h1>
+    <table id="data" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Cylinder ID</th>
+                <th>Type</th>
+                <th>Capacity</th>
+                <th>Manufacturer</th>
+                <th>Which customer has the cylinder</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer_item in customer_items %}
+            <tr>
+                <td>{{ customer_item[0] }}</td>
+                <td>{{ customer_item[1] }}</td>
+                <td>{{ customer_item[2] }}</td>
+                <td>{{ customer_item[3] }}</td>
+                <td>{{ customer_item[5] }}</td>
+                <td>
+                    <form style="margin:0;">
+                        <div class="btn-group" role="group">
+                            <button name="id" value="{{ customer_item[0] }}" type="submit"
+                                class="btn btn-outline-success btn-sm" formaction="/cylinderhist"
+                                formmethod="get">History</button>
+                            <button name="id" value="{{ customer_item[0] }}" type="submit"
+                                class="btn btn-outline-danger btn-sm" formaction="/customercomeback"
+                                formmethod="post">Came back</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% include "footer.html" %}

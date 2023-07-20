@@ -1,0 +1,36 @@
+{% include "header.html" %}
+<div class="container mt-3">
+    <h1>Add New Inventory Item</h1>
+    <form action="/inventory_new" method="post">
+        <div class="row">
+            <div class="col">
+                <div class="form-label-group">
+                    <label for="cylinder_id">ID</label>
+                    <input type="number" id="cylinder_id" name="cylinder_id" class="form-control" required>
+                </div>
+                <div class="form-label-group">
+                    <label for="cylinder_type">Type</label>
+                    <input type="text" id="cylinder_type" name="cylinder_type" class="form-control" required>
+                </div>
+                <div class="form-label-group">
+                    <label for="manufacturer">Manufacturer</label>
+                    <input type="text" id="manufacturer" name="manufacturer" class="form-control" required>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-label-group">
+                    <label for="quantity">Capacity</label>
+                    <input type="number" id="capacity" name="capacity" class="form-control" required>
+                </div>
+                <div class="form-label-group">
+                    <label for="current_condition">Empty / Full</label>
+                    <input type="text" id="current_condition" name="current_condition" class="form-control" required>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary btn-block mt-3" type="submit">Insert</button>
+    </form>
+</div>
+
+{% include "footer.html" %}

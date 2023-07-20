@@ -1,0 +1,48 @@
+{% include "header.html" %}
+
+<div class="container mt-3">
+    <h1>Challans</h1>
+    <div class="btn-group">
+        <a class="btn btn-outline-danger" href="/challan_empty">New Empty Challan</a>
+        <a class="btn btn-outline-primary" href="/challan_full">New Full Challan</a>
+    </div>
+    <table id="data" class="table">
+        <thead>
+            <tr>
+                <th>Challan ID</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Where</th>
+                <th>Vehicle</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for challan_item in challan_items %}
+            <tr class="{{ '' if True else 'table-warning' if challan_item[2] else 'table-danger' }}">
+                <td>{{ challan_item[0] }}</td>
+                <td>{{ challan_item[1].strftime('%a %b %d %Y %I:%M %p') }}</td>
+                <td>{{ "Full" if challan_item[2] else "Empty" }}</td>
+                <td>{{ challan_item[3] }}</td>
+                <td>{{ challan_item[4] }}</td>
+                <td>
+                    <form style="margin:0;">
+                        <div class="btn-group" role="group">
+                            <button name="id" value="{{ challan_item[0] }}" type="submit"
+                                class="btn btn-outline-success btn-sm" formaction="/challan_cylinder"
+                                formmethod="get">Cylinders</button>
+                            {% if challan_item[2] %}
+                            <button name="id" value="{{ challan_item[0] }}" type="submit"
+                                class="btn btn-outline-danger btn-sm" formaction="/challan_billing"
+                                formmethod="get">Billing</button>
+                            {% endif %}
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% include "footer.html" %}

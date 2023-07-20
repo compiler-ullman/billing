@@ -1,0 +1,45 @@
+{% include "header.html" %}
+
+<div class="container mt-3">
+    <h1>Inventory</h1>
+    <div class="btn-group">
+        <a class="btn btn-outline-primary" href="/inventory_new">Add New Inventory Item</a>
+    </div>
+    <table id="data" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Cylinder ID</th>
+                <th>Type</th>
+                <th>Capacity</th>
+                <th>Manufacturer</th>
+                <th>Full / Empty</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for inventory_item in inventory_items %}
+            <tr>
+                <td>{{ inventory_item[0] }}</td>
+                <td>{{ inventory_item[1] }}</td>
+                <td>{{ inventory_item[2] }}</td>
+                <td>{{ inventory_item[3] }}</td>
+                <td>{{ inventory_item[4] }}</td>
+                <td>
+                    <form style="margin:0;">
+                        <div class="btn-group" role="group">
+                            <button name="id" value="{{ inventory_item[0] }}" type="submit"
+                                class="btn btn-outline-success btn-sm" formaction="/cylinderhist"
+                                formmethod="get">History</button>
+                            <button name="id" value="{{ inventory_item[0]}}" type="submit"
+                                class="btn btn-outline-danger btn-sm" formaction="/inventory_edit"
+                                formmethod="get">Edit</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% include "footer.html" %}

@@ -1,0 +1,42 @@
+{% include "header.html" %}
+
+<div class="container mt-3">
+    <h1>Refilling</h1>
+    <table id="data" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Cylinder ID</th>
+                <th>Type</th>
+                <th>Capacity</th>
+                <th>Manufacturer</th>
+                <th>Where it is Refilling</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for refilling_item in refilling_items %}
+            <tr>
+                <td>{{ refilling_item[0] }}</td>
+                <td>{{ refilling_item[1] }}</td>
+                <td>{{ refilling_item[2] }}</td>
+                <td>{{ refilling_item[3] }}</td>
+                <td>{{ refilling_item[5] }}</td>
+                <td>
+                    <form style="margin:0;">
+                        <div class="btn-group" role="group">
+                            <button name="id" value="{{ refilling_item[0] }}" type="submit"
+                                class="btn btn-outline-success btn-sm" formaction="/cylinderhist"
+                                formmethod="get">History</button>
+                            <button name="id" value="{{ refilling_item[0] }}" type="submit"
+                                class="btn btn-outline-danger btn-sm" formaction="/refillcomeback"
+                                formmethod="post">Came Back</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% include "footer.html" %}

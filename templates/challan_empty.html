@@ -1,0 +1,35 @@
+{% include "header.html" %}
+<div class="container mt-3">
+    <h1>Add Empty Challan</h1>
+    <form action="/challan_empty" method="post">
+        <div class="row">
+            <div class="col">
+                <div class="form-label-group">
+                    <label for="challan_id">ID</label>
+                    <input type="number" id="challan_id" name="challan_id" class="form-control" required>
+                </div>
+                <div class="form-label-group">
+                    <label for="challan_where">Where</label>
+                    <input type="text" id="challan_where" name="challan_where" class="form-control" required>
+                </div>
+                <div class="form-label-group">
+                    <label for="vehicle">Vehicle</label>
+                    <input type="text" id="vehicle" name="vehicle" class="form-control" required>
+                </div>
+                <div class="form-label-group">
+                    <label for="cylinder_id">Cylinder ID</label>
+                    <select name="cylinder_id" id="cylinder_id" class="form-select" multiple
+                        aria-label="multiple select example" required>
+                        {% for cylinder_id in cylinder_ids %}
+                        <option value="{{ cylinder_id[0] }}">Cylinder ID {{ cylinder_id[0] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary btn-block mt-3" type="submit">Add</button>
+    </form>
+</div>
+
+{% include "footer.html" %}

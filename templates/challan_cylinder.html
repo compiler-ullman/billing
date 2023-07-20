@@ -1,0 +1,37 @@
+{% include "header.html" %}
+
+<div class="container mt-3">
+    <h1>Challan ID: {{ challan_id }}</h1>
+    <table id="data" class="table">
+        <thead>
+            <tr>
+                <th>Cylinder ID</th>
+                <th>Type</th>
+                <th>Capacity</th>
+                <th>Manufacturer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for challan_cylinder_item in challan_cylinder_items %}
+            <tr>
+                <td>{{ challan_cylinder_item[1] }}</td>
+                <td>{{ challan_cylinder_item[3] }}</td>
+                <td>{{ challan_cylinder_item[4] }}</td>
+                <td>{{ challan_cylinder_item[5] }}</td>
+                <td>
+                    <form style="margin:0;">
+                        <div class="btn-group" role="group">
+                            <button name="id" value="{{ challan_cylinder_item[1] }}" type="submit"
+                                class="btn btn-outline-success btn-sm" formaction="/cylinderhist"
+                                formmethod="get">History</button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% include "footer.html" %}
